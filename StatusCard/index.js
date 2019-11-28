@@ -9,10 +9,29 @@ export default class StatusCard extends Component {
     status: null
   };
   async componentDidMount() {
+    // First run
     let newStatus = await getStatusByUrl(this.props.url);
     this.setState(() => ({
       status: newStatus
     }));
+
+    // Refesh every 10 seconds
+    try {
+      setInterval(async () => {
+        this.setState(() => ({
+          status: null
+        }));
+        let newStatus = await getStatusByUrl(this.props.url);
+        this.setState(() => ({
+          status: newStatus
+        }));
+      }, 10000);
+    } catch (e) {
+      this.setState(() => ({
+        status: "ERROR"
+      }));
+      console.log(e);
+    }
   }
 
   render() {
