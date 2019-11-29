@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StatusBar, StyleSheet, View } from "react-native";
+import { StatusBar, StyleSheet, View, ScrollView } from "react-native";
 import { Text, ThemeProvider } from "react-native-elements";
 import StatusCard from "./StatusCard";
 
@@ -51,7 +51,7 @@ export default class App extends Component {
         <View style={styles.container}>
           <Text h1>ShultzLab Status</Text>
         </View>
-        {cards}
+        <ScrollView>{cards}</ScrollView>
       </ThemeProvider>
     );
   }
